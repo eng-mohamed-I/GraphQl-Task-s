@@ -1,0 +1,198 @@
+query { 
+  users {
+    id
+    name
+    email
+    address {
+      street
+      city
+      geo {
+        lat
+        lng
+      }
+    }
+    posts{ 
+      title
+    }
+  }
+}
+
+query { 
+ posts {
+   id
+   title
+   body
+   userId
+   user {
+     name
+     email
+   }
+   comments {
+     name
+     email
+     body
+   }
+ } 
+}
+
+query { 
+  comments { 
+    id
+    postId
+    name
+    email
+    body
+    post {
+      title
+    }
+  }
+}
+
+
+
+query { 
+  user(id:2) {
+    name
+    email
+    address {
+      street
+      city
+      geo {
+        lat
+        lng
+      }
+
+    }
+  }
+}
+
+query { 
+ post(id: 2) {
+   title
+   body
+ } 
+}
+
+query { 
+  comment(id:2) {
+    name
+    email
+    body
+  }
+}
+
+mutation { 
+  addUser(user : { 
+    name:"Mohamed", 
+    email: "mohamed@gmail.com",
+    address :{
+      street:"emahallah", 
+      city: "EGYPT", 
+      geo: { 
+        lat: "2333",
+        lng: "2938"
+      }
+    }}) {
+    name
+    email
+    address {
+      street
+      city
+      geo {
+        lat
+        lng
+      }
+    }
+  }
+}
+
+mutation { 
+  addPost(post:{ 
+    title:"newPost",
+    body:"this is a new post",
+    userId: 2
+  }){ 
+    id
+    title
+    body
+    userId
+  }
+}
+
+mutation { 
+  addComment(comment: { 
+    postId:2,
+    name: "new comment",
+    body: "this is a new comment",
+    email: "mohamed@gmail.com"
+  }){ 
+    postId
+    name
+    body
+    email
+  }
+}
+
+
+mutation { 
+  updateUser(id: 2,user : { 
+    name:"new Mohamed", 
+    email: "mohamed@gmail.com",
+    address :{
+      street:"emahallah", 
+      city: "EGYPT", 
+      geo: { 
+        lat: "2333",
+        lng: "2938"
+      }
+    }}) {
+    name
+    email
+    address {
+      street
+      city
+      geo {
+        lat
+        lng
+      }
+    }
+  }
+}
+
+mutation {
+  updatePost(id: 1 , post:{ title: "new post"}) {
+    title
+  }
+ }
+
+ mutation{ 
+   updateComment(id: 1, comment:{name: "new comment update"}) {
+     name
+   }
+ }
+
+ mutation { 
+   deletePost (id: 102) { 
+     title
+   }
+ }
+
+mutation { 
+  deleteUser(id: 11) {
+    name
+    email
+  }
+}
+
+mutation { 
+  deletePost (id:1) {
+    title
+  }
+}
+
+mutation { 
+  deleteComment (id:1) {
+    name
+  }
+}
+
