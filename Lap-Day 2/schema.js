@@ -26,6 +26,7 @@ type Query {
 type Mutation {
     register(user:userInput):User
     login(user:loginInput):loginResponse
+    updateUser(user:loginInput , update:updateInput):String
 
     addPost(post:postInput):Post!
     deletePost(id:ID):String
@@ -40,6 +41,9 @@ type loginResponse {
 input updatePostInput {
    title:String
    status:String
+}
+input updateInput {
+   newemail:String!
 }
 
 input loginInput {

@@ -41,6 +41,25 @@ const userMutations = {
     await user.save();
     return { token, refreshToken };
   },
+
+  //update user
+  async updateUser(_, args) {
+    let { email, password } = args.user;
+    let { newemail } = args.update;
+    if (!email || !password) {
+      throw new Error("email or password invalid");
+    }
+    let foundedUser = await user.find({ email: email });
+    return "founded";
+    let isValid = await bcrypt.compare(password, foundedUser.password);
+    if (!isValid) {
+      throw new Error("invalid email or password");
+    }
+
+    foundedUser.email = newemail;
+    await user.save();
+    return "email updated successfully";
+  },
 };
 
 export default userMutations;
