@@ -76,6 +76,6 @@ const userMutations = {
     return "deleted";
   },
 };
-// delete user
+
 
 export default userMutations;

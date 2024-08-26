@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 import Util from "util";
 import jwt from "jsonwebtoken";
 //port
-const port = 3000;
+const port = 8888;
 
 //secret keys
 dotenv.config();

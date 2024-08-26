@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-let postSchema = mongoose.Schema({
+let todoSchema = mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -9,8 +9,8 @@ let postSchema = mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["Post", "In_progress", "Done"],
-    default: "Post",
+    enum: ["todo", "In_progress", "Done"],
+    default: "todo",
   },
 
   userId: {
@@ -19,5 +19,5 @@ let postSchema = mongoose.Schema({
   },
 });
 
-let postModel = mongoose.model("Post", postSchema);
-export default postModel;
+let todoModel = mongoose.model("todo", todoSchema);
+export default todoModel;

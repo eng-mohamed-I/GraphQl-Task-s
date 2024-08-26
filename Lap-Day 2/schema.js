@@ -2,7 +2,7 @@ export const schema = `#graphql
 
 
 
-type Post implements sharedFields {
+type Todo implements sharedFields {
    _id:ID
    title:String!
    status:String!
@@ -19,7 +19,7 @@ type User{
 }
 
 type Query {
-   posts:[Post!]!
+   todos:[Todo!]!
    users:[User!]!
    user(id:ID):User
 }
@@ -29,9 +29,9 @@ type Mutation {
     updateUser(user:loginInput , update:updateInput):String
     deleteUser(id:ID):String
 
-    addPost(post:postInput):Post!
-    deletePost(id:ID):String
-    updatePost(id:ID, post: updatePostInput):Post!
+    addTodo(todo:todoInput):Todo!
+    deleteTodo(id:ID):String
+    updateTodo(id:ID, post: updateTodoInput):Todo!
 }
 
 type loginResponse {
@@ -39,7 +39,7 @@ type loginResponse {
    refreshToken:String!
 }
     
-input updatePostInput {
+input updateTodoInput {
    title:String
    status:String
 }
@@ -59,14 +59,14 @@ input userInput {
    role:String
 }
 
-input postInput {
+input todoInput {
    title:String!
    status:statusEnum
    userId:ID
 }
 
 enum statusEnum {
-   Post
+   Todo
    In_progress 
    Done
 }
