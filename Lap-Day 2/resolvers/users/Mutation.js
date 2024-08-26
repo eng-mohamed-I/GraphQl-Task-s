@@ -76,6 +76,7 @@ const userMutations = {
     return "deleted";
     //first pull
     //sec pull
+    //third pull
   },
 };
 // delete user
