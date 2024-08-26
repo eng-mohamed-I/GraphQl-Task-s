@@ -75,6 +75,7 @@ const userMutations = {
     await userModel.findOneAndDelete({ _id: id });
     return "deleted";
     //first pull
+    //sec pull
   },
 };
 // delete user
