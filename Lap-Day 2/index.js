@@ -6,7 +6,7 @@ import { resolvers } from "./resolvers/index.js";
 import dotenv from "dotenv";
 import Util from "util";
 import jwt from "jsonwebtoken";
-
+//port
 const port = 3000;
 
 //secret keys
