@@ -27,6 +27,7 @@ type Mutation {
     register(user:userInput):User
     login(user:loginInput):loginResponse
     updateUser(user:loginInput , update:updateInput):String
+    deleteUser(id:ID):String
 
     addPost(post:postInput):Post!
     deletePost(id:ID):String

@@ -12,7 +12,7 @@ const postMutations = {
     if (context.user) {
       if (context.user.role == "admin") {
         await postModel.findOneAndDelete({ _id: args.id });
-        return "post deleted successfuly";
+        return "deleted";
       }
     } else {
       return "you are not authenticated";

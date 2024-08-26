@@ -3,10 +3,16 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const userMutations = {
+  //add user
   async register(_, args) {
-    const newUser = await userModel.create(args.user);
+    //hash password
+    // let salt = await bcrypt.genSalt(10);
+    // let hashedPassword = await bcrypt.hash(args.user.password, salt);
+    // args.user.password = hashedPassword;
+    const newUser = await userModel.create(args.user); //send new user
     return newUser;
   },
+  //Login user
   async login(_, args) {
     let { email, password } = args.user;
     if (!email || !password) {
@@ -37,6 +43,7 @@ const userMutations = {
       process.env.REFRESHSECRET,
       { expiresIn: "7d" }
     );
+
     user.refreshToken = refreshToken;
     await user.save();
     return { token, refreshToken };
@@ -49,17 +56,26 @@ const userMutations = {
     if (!email || !password) {
       throw new Error("email or password invalid");
     }
-    let foundedUser = await user.find({ email: email });
-    return "founded";
+    let foundedUser = await userModel.findOne({ email: email });
+    if (!foundedUser) {
+      throw new Error("not founded");
+    }
+
     let isValid = await bcrypt.compare(password, foundedUser.password);
     if (!isValid) {
       throw new Error("invalid email or password");
     }
-
     foundedUser.email = newemail;
-    await user.save();
+    await foundedUser.save();
     return "email updated successfully";
   },
+
+  //delete User
+  async deleteUser(_, { id }) {
+    await userModel.findOneAndDelete({ _id: id });
+    return "deleted";
+  },
 };
+// delete user
 
 export default userMutations;
