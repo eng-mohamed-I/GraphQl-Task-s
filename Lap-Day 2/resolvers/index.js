@@ -1,15 +1,22 @@
-import todosQueries from "./todos/Query.js";
-import userQueries from "./users/Query.js";
-import userMutation from "./users/Mutation.js";
-const resolvers = {
+import { postQueries } from "./posts/Query.js";
+import { userQueries } from "./users/Query.js";
+import userMutations from "./users/Mutation.js";
+import postMutations from "./posts/Mutation.js";
+import userModel from "../models/user.js";
+export const resolvers = {
   Query: {
+    ...postQueries,
     ...userQueries,
-    ...todosQueries,
   },
 
   Mutation: {
-    ...userMutation,
+    ...userMutations,
+    ...postMutations,
+  },
+  //relations
+  Post: {
+    async user(parent) {
+      return await userModel.findById(parent.userId);
+    },
   },
 };
-
-export { resolvers };
